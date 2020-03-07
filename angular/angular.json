@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "projects": {
+    "ng-alain-app": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "apps/ng-alain-app",
+      "sourceRoot": "apps/ng-alain-app/src",
+      "prefix": "fs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ng-alain-app",
+            "index": "apps/ng-alain-app/src/index.html",
+            "main": "apps/ng-alain-app/src/main.ts",
+            "polyfills": "apps/ng-alain-app/src/polyfills.ts",
+            "tsConfig": "apps/ng-alain-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/ng-alain-app/src/favicon.ico",
+              "apps/ng-alain-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "apps/ng-alain-app/src/styles.less",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/primeng.min.css"
+            ],
+            "scripts": [
+              "node_modules/@antv/g2/build/g2.js",
+              "node_modules/@antv/data-set/dist/data-set.min.js",
+              "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
+              "node_modules/ajv/dist/ajv.bundle.js",
+              "node_modules/qrious/dist/qrious.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ng-alain-app/src/environments/environment.ts",
+                  "with": "apps/ng-alain-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-alain-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-alain-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-alain-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ng-alain-app/tsconfig.app.json",
+              "apps/ng-alain-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ng-alain-app/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ng-alain-app/jest.config.js",
+            "tsConfig": "apps/ng-alain-app/tsconfig.spec.json",
+            "setupFile": "apps/ng-alain-app/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "fs.themes": {
+      "projectType": "library",
+      "root": "libs/themes",
+      "sourceRoot": "libs/themes/src",
+      "prefix": "fs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/themes/tsconfig.lib.json",
+            "project": "libs/themes/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/themes/tsconfig.lib.json",
+              "libs/themes/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/themes/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/themes/jest.config.js",
+            "tsConfig": "libs/themes/tsconfig.spec.json",
+            "setupFile": "libs/themes/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "fs.account": {
+      "projectType": "library",
+      "root": "libs/account",
+      "sourceRoot": "libs/account/src",
+      "prefix": "fs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/account/tsconfig.lib.json",
+            "project": "libs/account/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/tsconfig.lib.json",
+              "libs/account/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/account/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/jest.config.js",
+            "tsConfig": "libs/account/tsconfig.spec.json",
+            "setupFile": "libs/account/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },    
+    "fs.dev": {
+      "projectType": "library",
+      "root": "themes/dev",
+      "sourceRoot": "themes/dev/src",
+      "prefix": "fs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "themes/dev/tsconfig.lib.json",
+            "project": "themes/dev/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "themes/dev/tsconfig.lib.json",
+              "themes/dev/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!themes/dev/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "themes/dev/jest.config.js",
+            "tsConfig": "themes/dev/tsconfig.spec.json",
+            "setupFile": "themes/dev/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "fs.ng-alain": {
+      "projectType": "library",
+      "root": "themes/ng-alain",
+      "sourceRoot": "themes/ng-alain/src",
+      "prefix": "fs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "themes/ng-alain/tsconfig.lib.json",
+            "project": "themes/ng-alain/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "themes/ng-alain/tsconfig.lib.json",
+              "themes/ng-alain/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!themes/ng-alain/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "themes/ng-alain/jest.config.js",
+            "tsConfig": "themes/ng-alain/tsconfig.spec.json",
+            "setupFile": "themes/ng-alain/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "fs.ngx-admin": {
+      "projectType": "library",
+      "root": "themes/ngx-admin",
+      "sourceRoot": "themes/ngx-admin/src",
+      "prefix": "fs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "themes/ngx-admin/tsconfig.lib.json",
+            "project": "themes/ngx-admin/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "themes/ngx-admin/tsconfig.lib.json",
+              "themes/ngx-admin/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!themes/ngx-admin/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "themes/ngx-admin/jest.config.js",
+            "tsConfig": "themes/ngx-admin/tsconfig.spec.json",
+            "setupFile": "themes/ngx-admin/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    }        
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "none"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "ng-alain-app"
+}
