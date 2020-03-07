@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>FS.Abp.Themes</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.MongoDB" Version="2.2.1" />
+    <ProjectReference Include="..\FS.Abp.Themes.Domain\FS.Abp.Themes.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
