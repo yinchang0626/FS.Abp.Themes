@@ -7,7 +7,15 @@ Startup webists: IdentityServer,HttpApi.Host
 At angular folder
  ``` cmd
  npm i
- ng serve
+ ng serve ng-alain-app
  ```
+ 
+ ### Available UI
+ 
+ if you have any suggestion ui design, please follow:  
+ 
+ [ng-alain](https://github.com/ng-alain/ng-alain) : https://github.com/ng-alain/ng-alain  
+ 
+ [ngx-admin](https://github.com/akveo/ngx-admin) : https://github.com/akveo/ngx-admin  
 
 
