@@ -1,6 +1,15 @@
 {
   "culture": "en",
   "texts": {
-    "ManageYourProfile":  "Manage your profile" 
+    "DisplayName:FS.Themes.Website.Title_DsiplayName": "Html Title",
+    "Description:FS.Themes.Website.Title_Description": "This will display at title tag",
+    "DisplayName:FS.Themes.Website.Description_DsiplayName": "Html Description",
+    "Description:FS.Themes.Website.Description_Description": "This will display at description tag",
+    "DisplayName:FS.Themes.LoginPage.Title_DsiplayName": "LoginPage Title",
+    "Description:FS.Themes.LoginPage.Title_Description": "",
+    "DisplayName:FS.Themes.LoginPage.Description_DsiplayName": "LoginPage Description",
+    "DisplayName:FS.Themes.LoginPage.Description_Description": "",
+    "DisplayName:FS.Themes.LoginPage.Footer_DsiplayName": "LoginPage FooterText",
+    "DisplayName:FS.Themes.LoginPage.Footer_Description": "Enter text or html tag"
   }
 }

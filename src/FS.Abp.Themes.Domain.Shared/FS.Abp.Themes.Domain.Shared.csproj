@@ -16,4 +16,8 @@
     <Content Remove="Localization\Themes\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Localization\Themes\zh-Hant.json" />
+  </ItemGroup>
+
 </Project>
