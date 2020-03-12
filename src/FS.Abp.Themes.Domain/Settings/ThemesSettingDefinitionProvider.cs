@@ -1,4 +1,6 @@
-﻿using Volo.Abp.Settings;
+﻿using FS.Abp.Themes.Localization;
+using Volo.Abp.Localization;
+using Volo.Abp.Settings;
 
 namespace FS.Abp.Themes.Settings
 {
@@ -9,6 +11,10 @@ namespace FS.Abp.Themes.Settings
             /* Define module settings here.
              * Use names from ThemesSettings class.
              */
+        }
+        private static LocalizableString L(string name)
+        {
+            return LocalizableString.Create<ThemesResource>(name);
         }
     }
 }

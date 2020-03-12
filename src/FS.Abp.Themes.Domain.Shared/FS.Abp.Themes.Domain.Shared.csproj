@@ -16,4 +16,28 @@
     <Content Remove="Localization\Themes\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="DataModel\DataModel.Blank.tmpl" />
+    <None Remove="Localization\Themes\zh-Hant.json" />
+    <None Remove="_Generated\Localization\Themes\en.json" />
+    <None Remove="_Generated\Localization\Themes\zh-Hant.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="_Generated\Localization\Themes\en.json" />
+    <EmbeddedResource Include="_Generated\Localization\Themes\zh-Hant.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataModel\DataModel.efml">
+      <Generator>DevartEFCoreGenerator</Generator>
+      <LastGenOutput>DataModel.info</LastGenOutput>
+    </None>
+    <None Update="DataModel\DataModel.info">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataModel.efml</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>
