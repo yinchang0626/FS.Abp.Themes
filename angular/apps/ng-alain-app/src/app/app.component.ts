@@ -39,8 +39,8 @@ export class AppComponent implements OnInit {
     }
     
     loadAbpSetting(){
-        let settingTitle = this.store.selectSnapshot(ConfigState.getSetting('Themes.Website.Title'));
-        let description =  this.store.selectSnapshot(ConfigState.getSetting('Themes.Website.Description'));
+        let settingTitle = this.store.selectSnapshot(ConfigState.getSetting('FS.Abp.Themes.Core.WebsiteOptions.Title'));
+        let description =  this.store.selectSnapshot(ConfigState.getSetting('FS.Abp.Themes.Core.WebsiteOptions.Description'));
         this.titleSrv.prefix = settingTitle;
         this.htmlSrv.setTitle(settingTitle);
         this.meta.updateTag({name:'description',content:description});

@@ -1,0 +1,11 @@
+﻿{
+  "culture": "zh-Hant",
+  "texts": {
+    "WebsiteOptions.Title": "Title",
+    "DisplayName:WebsiteOptions.Title": "Title",
+    "Description:WebsiteOptions.Title": "Title",
+    "WebsiteOptions.Description": "Description",
+    "DisplayName:WebsiteOptions.Description": "Description",
+    "Description:WebsiteOptions.Description": "Description"
+  }
+}
