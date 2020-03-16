@@ -1,0 +1,15 @@
+{
+  "culture": "zh-Hant",
+  "texts": {
+    "DisplayName:FS.Themes.Website.Title_DsiplayName": "網頁標題",
+    "Description:FS.Themes.Website.Title_Description": "title 標籤",
+    "DisplayName:FS.Themes.Website.Description_DsiplayName": "網頁描述(Description)",
+    "Description:FS.Themes.Website.Description_Description": "description 標籤(SEO)",
+    "DisplayName:FS.Themes.LoginPage.Title_DsiplayName": "登入頁(標題)",
+    "Description:FS.Themes.LoginPage.Title_Description": "",
+    "DisplayName:FS.Themes.LoginPage.Description_DsiplayName": "登入頁(描述)",
+    "DisplayName:FS.Themes.LoginPage.Description_Description": "",
+    "DisplayName:FS.Themes.LoginPage.Footer_DsiplayName": "登入頁(頁尾文字)",
+    "DisplayName:FS.Themes.LoginPage.Footer_Description": "文字或Html標籤"
+  }
+}
