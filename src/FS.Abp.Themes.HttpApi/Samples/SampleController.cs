@@ -5,7 +5,7 @@ using Volo.Abp;
 
 namespace FS.Abp.Themes.Samples
 {
-    [RemoteService]
+    [RemoteService(false)]
     [Route("api/Themes/sample")]
     public class SampleController : ThemesController, ISampleAppService
     {
