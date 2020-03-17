@@ -3,8 +3,13 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>FS.Abp.Themes</RootNamespace>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FS.Abp.Themes.Application\FS.Abp.Themes.Application.csproj" />
+    <ProjectReference Include="..\..\src\FS.Abp.Themes.EntityFrameworkCore\FS.Abp.Themes.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\FS.Abp.Themes.HttpApi\FS.Abp.Themes.HttpApi.csproj" />
+  </ItemGroup>
 
 </Project>
