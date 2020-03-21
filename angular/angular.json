@@ -119,23 +119,23 @@
     },
     "fs.themes": {
       "projectType": "library",
-      "root": "libs/themes",
-      "sourceRoot": "libs/themes/src",
+      "root": "themes/core",
+      "sourceRoot": "themes/core/src",
       "prefix": "fs",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/themes/tsconfig.lib.json",
-            "project": "libs/themes/ng-package.json"
+            "tsConfig": "themes/core/tsconfig.lib.json",
+            "project": "themes/core/ng-package.json"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/themes/tsconfig.lib.json",
-              "libs/themes/tsconfig.spec.json"
+              "themes/core/tsconfig.lib.json",
+              "themes/core/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
@@ -146,9 +146,9 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/themes/jest.config.js",
-            "tsConfig": "libs/themes/tsconfig.spec.json",
-            "setupFile": "libs/themes/src/test-setup.ts"
+            "jestConfig": "themes/core/jest.config.js",
+            "tsConfig": "themes/core/tsconfig.spec.json",
+            "setupFile": "themes/core/src/test-setup.ts"
           }
         }
       },
