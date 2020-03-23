@@ -35,7 +35,7 @@ namespace FS.Abp.Themes
         typeof(ThemesApplicationModule),
         typeof(ThemesEntityFrameworkCoreModule),
         typeof(ThemesHttpApiModule),
-        typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
+        typeof(AbpAspNetCoreMultiTenancyModule),
         typeof(AbpAutofacModule),
         typeof(AbpEntityFrameworkCoreSqlServerModule),
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
