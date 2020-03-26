@@ -16,7 +16,6 @@ import { TenantManagementConfigModule } from '@abp/ng.tenant-management.config';
 import { SettingManagementConfigModule } from '@abp/ng.setting-management.config';
 import { LayoutDefaultComponent, LayoutPassportComponent, LayoutFullScreenComponent } from '@fs/ng-alain/basic';
 import { Router } from '@angular/router';
-import { ThemesConfigModule } from '@fs/themes/config'
 
 
 // 加载i18n语言文件
@@ -42,7 +41,6 @@ const AbpConfigModules=[
   IdentityConfigModule,
   TenantManagementConfigModule,
   SettingManagementConfigModule,
-  ThemesConfigModule
 ]
 
 

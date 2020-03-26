@@ -18,14 +18,7 @@ const routes: Routes = [
     {
         path: 'account',
         loadChildren: () => import('./lazy-libs/account-wrapper.module').then(m => m.AccountWrapperModule)
-    },
-    {
-        path: 'themes',
-        loadChildren: () =>
-            import('./lazy-libs/themes-wrapper.module').then(m => m.ThemesWrapperModule),
     }
-
-
 ];
 @NgModule({
     imports: [
