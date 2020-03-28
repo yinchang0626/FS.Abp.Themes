@@ -1,4 +1,4 @@
-import { CoreModule } from '@abp/ng.core';
+import { CoreModule } from '@fs/core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
