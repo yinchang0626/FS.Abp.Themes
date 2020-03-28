@@ -14,7 +14,7 @@
     "ng-alain-app": {
       "tags": []
     },
-    "fs.themes": {
+    "fs.core": {
       "tags": []
     },
     "abp.account": {
