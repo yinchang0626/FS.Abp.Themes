@@ -5,7 +5,7 @@ import { CoreModule as AbpCoreModule } from '@abp/ng.core';
 
 export const themesRoutes: Route[] = [];
 import { NgxsModule } from '@ngxs/store';
-import { PageState } from './states';
+import { PageState } from './states/page.state';
 @NgModule({
   imports: [
     CommonModule, 
