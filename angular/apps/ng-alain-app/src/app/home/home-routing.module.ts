@@ -10,6 +10,7 @@ const routes: Routes = [
         component: LayoutDefaultComponent,
         children: [{ path: '', component: HomeComponent }],
     },
+    
 ];
 
 @NgModule({

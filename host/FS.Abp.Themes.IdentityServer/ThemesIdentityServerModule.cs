@@ -41,6 +41,8 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation.Urls;
+using Volo.Abp.Security.Claims;
+using IdentityModel;
 
 namespace FS.Abp.Themes
 {
@@ -113,6 +115,11 @@ namespace FS.Abp.Themes
                 options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
             });
 
+            //Updates AbpClaimTypes to be compatible with identity server claims.
+            AbpClaimTypes.UserId = JwtClaimTypes.Subject;
+            AbpClaimTypes.UserName = JwtClaimTypes.Name;
+            AbpClaimTypes.Role = JwtClaimTypes.Role;
+            AbpClaimTypes.Email = JwtClaimTypes.Email;
             context.Services.AddAuthentication()
                 .AddIdentityServerAuthentication(options =>
                 {

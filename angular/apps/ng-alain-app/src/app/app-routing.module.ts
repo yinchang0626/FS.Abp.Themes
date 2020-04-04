@@ -3,6 +3,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { AccountConfigService } from '@abp/ng.account.config';
 import { addAbpRoutes, eLayoutType, ABP } from '@abp/ng.core';
 const routes: Routes = [
+
+    {
+        path: 'account',
+        loadChildren: () => import('./lazy-libs/account-wrapper.module').then(m => m.AccountWrapperModule)
+    },
+    {
+        path: 'identity',
+        loadChildren: () => import('@abp/ng.identity').then(m => m.IdentityModule)
+    },
+    {
+        path: 'tenant-management',
+        loadChildren: () => import('@abp/ng.tenant-management').then(m => m.TenantManagementModule)
+    },
+    {
+        path: 'setting-management',
+        loadChildren: () => import('@abp/ng.setting-management').then(m => m.SettingManagementModule)
+    },
     {
         path: '',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
@@ -10,14 +27,10 @@ const routes: Routes = [
             routes: {
                 name: '::Menu:Home',
                 parentName: 'AbpUiNavigation::Menu:Administration',
-                path: '',
+                path: 'home',
                 iconClass: 'fa fa-home',
             } as ABP.Route,
         },
-    },
-    {
-        path: 'account',
-        loadChildren: () => import('./lazy-libs/account-wrapper.module').then(m => m.AccountWrapperModule)
     }
 ];
 @NgModule({

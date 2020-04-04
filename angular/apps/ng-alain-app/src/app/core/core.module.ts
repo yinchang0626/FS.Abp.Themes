@@ -40,7 +40,7 @@ const AbpConfigModules=[
   AccountConfigModule.forRoot({ redirectUrl: '/' }),
   IdentityConfigModule,
   TenantManagementConfigModule,
-  SettingManagementConfigModule,
+  SettingManagementConfigModule
 ]
 
 
