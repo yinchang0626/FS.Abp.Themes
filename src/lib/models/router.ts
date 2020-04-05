@@ -1,10 +1,10 @@
 import { TemplateRef } from '@angular/core';
-export namespace Page {
+export namespace Router {
   export interface State {    
-    pageConfig: PageConfig;
+    profile: Profile;
   }
 
-  export interface PageConfig {
+  export interface Profile {
     [key:string]:any; 
   }
 }

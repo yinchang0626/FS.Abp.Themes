@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { RouterState } from '@ngxs/router-plugin';
+import { UpdateProfile } from '../actions/router.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class RouterStateService {
       return result;
     }
     return null;
+  }
+
+  dispatchUpdateProfile(...args: ConstructorParameters<typeof UpdateProfile>) {
+    return this.store.dispatch(new UpdateProfile(...args));
   }
 }
