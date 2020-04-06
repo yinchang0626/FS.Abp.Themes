@@ -9,7 +9,7 @@ import { timeInterval, tap, map, first } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CoreOptionsService {
+export class CoreConfigService {
   constructor(
     @Optional() @Inject('OTA_OPTIONS') private options: any
   ) {

@@ -6,7 +6,7 @@ import { CoreModule as AbpCoreModule,noop } from '@abp/ng.core';
 export const themesRoutes: Route[] = [];
 import { NgxsModule } from '@ngxs/store';
 import { RouterState } from './states/router.state';
-import { CoreOptionsService } from './services/core-options.service';
+import { CoreConfigService } from './services/core-config.service';
 
 export interface CoreOptions {
   showDev: boolean;
@@ -41,7 +41,7 @@ export class CoreModule {
           useFactory: coreOptionsFactory,
           deps: [CoreOptions],
         },
-        { provide: APP_INITIALIZER, deps: [CoreOptionsService], useFactory: noop, multi: true }
+        { provide: APP_INITIALIZER, deps: [CoreConfigService], useFactory: noop, multi: true }
       ],
     };
   }  
