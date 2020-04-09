@@ -1,7 +1,7 @@
-import { NgModule, ModuleWithProviders, InjectionToken, APP_INITIALIZER } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken, APP_INITIALIZER, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
-import { CoreModule as AbpCoreModule,noop } from '@abp/ng.core';
+import { CoreModule as AbpCoreModule, noop } from '@abp/ng.core';
 
 export const themesRoutes: Route[] = [];
 import { NgxsModule } from '@ngxs/store';
@@ -10,6 +10,7 @@ import { CoreConfigService } from './services/core-config.service';
 
 export interface CoreOptions {
   showDev: boolean;
+  layouts: Type<any>[];
 }
 
 export function coreOptionsFactory(options: CoreOptions) {
@@ -23,15 +24,15 @@ export const CoreOptions = new InjectionToken('CoreOptions');
 
 @NgModule({
   imports: [
-    CommonModule, 
-    AbpCoreModule, 
+    CommonModule,
+    AbpCoreModule,
     RouterModule,
-    
-    NgxsModule.forFeature([ RouterState ])
+
+    NgxsModule.forFeature([RouterState])
   ]
 })
-export class CoreModule { 
-  static forRoot(options = {} as CoreOptions): ModuleWithProviders {
+export class CoreModule {
+  static forRoot(options:CoreOptions): ModuleWithProviders {
     return {
       ngModule: CoreModule,
       providers: [
@@ -44,5 +45,5 @@ export class CoreModule {
         { provide: APP_INITIALIZER, deps: [CoreConfigService], useFactory: noop, multi: true }
       ],
     };
-  }  
+  }
 }

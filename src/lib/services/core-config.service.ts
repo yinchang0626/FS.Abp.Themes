@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store, Actions, ofActionDispatched } from '@ngxs/store';
 import { CodesTreeService } from '@fs/coding-management/core';
 import { timeInterval, tap, map, first } from 'rxjs/operators';
+import {AddReplaceableComponent} from '@abp/ng.core';
 
 //todo 改rxjs對應取得config後的事件
 @Injectable({
@@ -11,7 +12,8 @@ import { timeInterval, tap, map, first } from 'rxjs/operators';
 })
 export class CoreConfigService {
   constructor(
-    @Optional() @Inject('OTA_OPTIONS') private options: any
+    private store:Store,
+    @Optional() @Inject('CoreOptions') private options: any
   ) {
     let showDev = !options || options.showDev;
 
@@ -23,8 +25,35 @@ export class CoreConfigService {
         wrapper: true,
         iconClass: 'fa fa-wrench',
         invisible: !showDev,
-        children:[]
+        children: []
       }
     ]);
+    console.log('yc',options);
+
+
+    //if (options.layouts.length > 0) {
+
+      // this.store.dispatch(
+      //   new AddReplaceableComponent({
+      //     component: LayoutDefaultComponent,
+      //     key: 'Theme.ApplicationLayoutComponent',
+      //   })
+      // );
+      // this.store.dispatch(
+      //   new AddReplaceableComponent({
+      //     component: LayoutPassportComponent,
+      //     key: 'Theme.AccountLayoutComponent',
+      //   })
+      // );
+      // this.store.dispatch(
+      //   new AddReplaceableComponent({
+      //     component: LayoutFullScreenComponent,
+      //     key: 'Theme.EmptyLayoutComponent',
+      //   })
+      // );
+    //}
+
+
+
   }
 }
