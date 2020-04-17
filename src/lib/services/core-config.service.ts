@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store, Actions, ofActionDispatched } from '@ngxs/store';
 import { CodesTreeService } from '@fs/coding-management/core';
 import { timeInterval, tap, map, first } from 'rxjs/operators';
-import {AddReplaceableComponent} from '@abp/ng.core';
+import { AddReplaceableComponent } from '@abp/ng.core';
 
 //todo 改rxjs對應取得config後的事件
 @Injectable({
@@ -12,7 +12,8 @@ import {AddReplaceableComponent} from '@abp/ng.core';
 })
 export class CoreConfigService {
   constructor(
-    private store:Store,
+    private actions$: Actions,
+    private store: Store,
     @Optional() @Inject('CoreOptions') private options: any
   ) {
     let showDev = !options || options.showDev;
@@ -28,32 +29,40 @@ export class CoreConfigService {
         children: []
       }
     ]);
-    console.log('yc',options);
 
+    this.actions$
+      .pipe(ofActionDispatched(GetAppConfiguration))
+      .pipe(first())
+      .subscribe(()=>this.SetLayout());    
 
-    //if (options.layouts.length > 0) {
-
-      // this.store.dispatch(
-      //   new AddReplaceableComponent({
-      //     component: LayoutDefaultComponent,
-      //     key: 'Theme.ApplicationLayoutComponent',
-      //   })
-      // );
-      // this.store.dispatch(
-      //   new AddReplaceableComponent({
-      //     component: LayoutPassportComponent,
-      //     key: 'Theme.AccountLayoutComponent',
-      //   })
-      // );
-      // this.store.dispatch(
-      //   new AddReplaceableComponent({
-      //     component: LayoutFullScreenComponent,
-      //     key: 'Theme.EmptyLayoutComponent',
-      //   })
-      // );
-    //}
-
-
-
+  }
+  SetLayout(){
+    let LayoutDefaultComponent = this.options.layouts.find(x => x.type == eLayoutType.application);
+    let LayoutPassportComponent = this.options.layouts.find(x => x.type == eLayoutType.account);
+    let LayoutFullScreenComponent = this.options.layouts.find(x => x.type == eLayoutType.empty);
+    if (!!LayoutDefaultComponent) {
+      this.store.dispatch(
+        new AddReplaceableComponent({
+          component: LayoutDefaultComponent,
+          key: 'Theme.ApplicationLayoutComponent',
+        })
+      );
+    }
+    if (!!LayoutPassportComponent) {
+      this.store.dispatch(
+        new AddReplaceableComponent({
+          component: LayoutPassportComponent,
+          key: 'Theme.AccountLayoutComponent',
+        })
+      );
+    }
+    if (!!LayoutFullScreenComponent) {
+      this.store.dispatch(
+        new AddReplaceableComponent({
+          component: LayoutFullScreenComponent,
+          key: 'Theme.EmptyLayoutComponent',
+        })
+      );
+    }    
   }
 }
