@@ -17,7 +17,6 @@ export class CoreConfigService {
     @Optional() @Inject('CoreOptions') private options: any
   ) {
     let showDev = !options || options.showDev;
-
     addAbpRoutes([
       {
         name: 'Development',
@@ -29,14 +28,16 @@ export class CoreConfigService {
         children: []
       }
     ]);
-
-    this.actions$
-      .pipe(ofActionDispatched(GetAppConfiguration))
-      .pipe(first())
-      .subscribe(()=>this.SetLayout());    
+    this.firstGetAppConfiguration$.subscribe(()=>{
+      this.SetLayout();
+    });
 
   }
-  SetLayout(){
+  public get firstGetAppConfiguration$() {
+    return this.actions$
+      .pipe(ofActionDispatched(GetAppConfiguration));
+  }
+  SetLayout() {
     let LayoutDefaultComponent = this.options.layouts.find(x => x.type == eLayoutType.application);
     let LayoutPassportComponent = this.options.layouts.find(x => x.type == eLayoutType.account);
     let LayoutFullScreenComponent = this.options.layouts.find(x => x.type == eLayoutType.empty);
@@ -63,6 +64,27 @@ export class CoreConfigService {
           key: 'Theme.EmptyLayoutComponent',
         })
       );
-    }    
+    }
   }
+  //https://github.com/abpframework/abp/issues/3379
+  dispatchDeeply(route: ABP.FullRoute) {
+    this.store.dispatch(new PatchRouteByName(
+      route.name,
+      route
+    )).subscribe(x => {
+      if (hasChildren(route)) {
+        route.children.forEach(innerRoute => {
+          if (hasChildren(innerRoute)) {
+            this.dispatchDeeply(innerRoute);
+          }
+        })
+      }
+    });
+    function hasChildren(route: ABP.FullRoute) {
+      return !!route.children && route.children.length > 0;
+
+    }
+  }
+
+
 }
