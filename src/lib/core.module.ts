@@ -7,6 +7,7 @@ export const themesRoutes: Route[] = [];
 import { NgxsModule } from '@ngxs/store';
 import { RouterState } from './states/router.state';
 import { CoreConfigService } from './services/core-config.service';
+import { PageBarComponent } from './components/page-bar.component';
 
 export interface CoreOptions {
   showDev: boolean;
@@ -20,15 +21,21 @@ export function coreOptionsFactory(options: CoreOptions) {
   };
 }
 
-export const CoreOptions = new InjectionToken('CoreOptions');
+export const CORE_OPTIONS = new InjectionToken('CoreOptions');
 
 @NgModule({
+  declarations:[
+    PageBarComponent
+  ],
   imports: [
     CommonModule,
     AbpCoreModule,
     RouterModule,
 
     NgxsModule.forFeature([RouterState])
+  ],
+  exports:[
+    PageBarComponent
   ]
 })
 export class CoreModule {
@@ -36,11 +43,11 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        { provide: CoreOptions, useValue: options },
+        { provide: CORE_OPTIONS, useValue: options },
         {
           provide: 'CoreOptions',
           useFactory: coreOptionsFactory,
-          deps: [CoreOptions],
+          deps: [CORE_OPTIONS],
         },
         { provide: APP_INITIALIZER, deps: [CoreConfigService], useFactory: noop, multi: true }
       ],
