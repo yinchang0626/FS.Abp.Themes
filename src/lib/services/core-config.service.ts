@@ -15,55 +15,6 @@ export class CoreConfigService {
     private store: Store,
     @Optional() @Inject('CoreOptions') private options: any
   ) {
-    // let showDev = !options || options.showDev;
-    // addAbpRoutes([
-    //   {
-    //     name: 'Development',
-    //     path: '',
-    //     order: 0,
-    //     wrapper: true,
-    //     iconClass: 'fa fa-wrench',
-    //     invisible: !showDev,
-    //     children: []
-    //   }
-    // ]);
-    this.firstGetAppConfiguration$.subscribe(()=>{
-      this.SetLayout();
-    });
-
-  }
-  public get firstGetAppConfiguration$() {
-    return this.actions$
-      .pipe(ofActionDispatched(GetAppConfiguration));
-  }
-  SetLayout() {
-    let LayoutDefaultComponent = this.options.layouts.find(x => x.type == eLayoutType.application);
-    let LayoutPassportComponent = this.options.layouts.find(x => x.type == eLayoutType.account);
-    let LayoutFullScreenComponent = this.options.layouts.find(x => x.type == eLayoutType.empty);
-    if (!!LayoutDefaultComponent) {
-      this.store.dispatch(
-        new AddReplaceableComponent({
-          component: LayoutDefaultComponent,
-          key: 'Theme.ApplicationLayoutComponent',
-        })
-      );
-    }
-    if (!!LayoutPassportComponent) {
-      this.store.dispatch(
-        new AddReplaceableComponent({
-          component: LayoutPassportComponent,
-          key: 'Theme.AccountLayoutComponent',
-        })
-      );
-    }
-    if (!!LayoutFullScreenComponent) {
-      this.store.dispatch(
-        new AddReplaceableComponent({
-          component: LayoutFullScreenComponent,
-          key: 'Theme.EmptyLayoutComponent',
-        })
-      );
-    }
   }
   //https://github.com/abpframework/abp/issues/3379
   dispatchDeeply(route: ABP.FullRoute) {

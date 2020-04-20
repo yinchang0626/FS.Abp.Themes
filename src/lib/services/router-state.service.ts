@@ -1,16 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional, Inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { RouterState } from '@ngxs/router-plugin';
 import { UpdateProfile } from '../actions/router.actions';
 import { RoutesRecognized, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { CoreConfigService } from './core-config.service';
+import { AddReplaceableComponent, eLayoutType } from '@abp/ng.core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouterStateService {
   constructor(
-    private store: Store) { }
+    private store: Store,
+    private coreConfigService:CoreConfigService,
+    @Optional() @Inject('CoreOptions') private options: any
+    ) { }
 
   getParamKeyValue(paramKey: string) {
     let router = this.store.selectSnapshot(RouterState.state);
@@ -33,6 +38,44 @@ export class RouterStateService {
   }
 
   onAppComponentOnInit(router: Router) {
+    this.setLayout();
+    this.setProfile(router);
+
+  }
+
+  dispatchUpdateProfile(...args: ConstructorParameters<typeof UpdateProfile>) {
+    return this.store.dispatch(new UpdateProfile(...args));
+  }
+  setLayout() {
+    let LayoutDefaultComponent = this.options.layouts.find(x => x.type == eLayoutType.application);
+    let LayoutPassportComponent = this.options.layouts.find(x => x.type == eLayoutType.account);
+    let LayoutFullScreenComponent = this.options.layouts.find(x => x.type == eLayoutType.empty);
+    if (!!LayoutDefaultComponent) {
+      this.store.dispatch(
+        new AddReplaceableComponent({
+          component: LayoutDefaultComponent,
+          key: 'Theme.ApplicationLayoutComponent',
+        })
+      );
+    }
+    if (!!LayoutPassportComponent) {
+      this.store.dispatch(
+        new AddReplaceableComponent({
+          component: LayoutPassportComponent,
+          key: 'Theme.AccountLayoutComponent',
+        })
+      );
+    }
+    if (!!LayoutFullScreenComponent) {
+      this.store.dispatch(
+        new AddReplaceableComponent({
+          component: LayoutFullScreenComponent,
+          key: 'Theme.EmptyLayoutComponent',
+        })
+      );
+    }
+  }
+  setProfile(router: Router){
     router.events
       .pipe(
         filter(event => event instanceof RoutesRecognized),
@@ -56,10 +99,6 @@ export class RouterStateService {
           this.dispatchUpdateProfile(r);
         }
 
-      });
-  }
-
-  dispatchUpdateProfile(...args: ConstructorParameters<typeof UpdateProfile>) {
-    return this.store.dispatch(new UpdateProfile(...args));
+      });    
   }
 }
