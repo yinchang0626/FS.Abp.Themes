@@ -15,18 +15,18 @@ export class CoreConfigService {
     private store: Store,
     @Optional() @Inject('CoreOptions') private options: any
   ) {
-    let showDev = !options || options.showDev;
-    addAbpRoutes([
-      {
-        name: 'Development',
-        path: '',
-        order: 0,
-        wrapper: true,
-        iconClass: 'fa fa-wrench',
-        invisible: !showDev,
-        children: []
-      }
-    ]);
+    // let showDev = !options || options.showDev;
+    // addAbpRoutes([
+    //   {
+    //     name: 'Development',
+    //     path: '',
+    //     order: 0,
+    //     wrapper: true,
+    //     iconClass: 'fa fa-wrench',
+    //     invisible: !showDev,
+    //     children: []
+    //   }
+    // ]);
     this.firstGetAppConfiguration$.subscribe(()=>{
       this.SetLayout();
     });
