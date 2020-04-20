@@ -35,6 +35,7 @@ export const CORE_OPTIONS = new InjectionToken('CoreOptions');
     NgxsModule.forFeature([RouterState])
   ],
   exports:[
+    AbpCoreModule,
     PageBarComponent
   ]
 })
