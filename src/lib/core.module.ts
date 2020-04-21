@@ -10,13 +10,11 @@ import { CoreConfigService } from './services/core-config.service';
 import { PageBarComponent } from './components/page-bar.component';
 
 export interface CoreOptions {
-  showDev: boolean;
   layouts: Type<any>[];
 }
 
 export function coreOptionsFactory(options: CoreOptions) {
   return {
-    showDev: true,
     ...options,
   };
 }
