@@ -1,18 +1,55 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken, APP_INITIALIZER, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
-import { CoreModule as AbpCoreModule } from '@abp/ng.core';
+import { CoreModule as AbpCoreModule, noop } from '@abp/ng.core';
 
 export const themesRoutes: Route[] = [];
 import { NgxsModule } from '@ngxs/store';
-import { PageState } from './states/page.state';
+import { RouterState } from './states/router.state';
+import { CoreConfigService } from './services/core-config.service';
+import { PageBarComponent } from './components/page-bar.component';
+
+export interface CoreOptions {
+  layouts: Type<any>[];
+}
+
+export function coreOptionsFactory(options: CoreOptions) {
+  return {
+    ...options,
+  };
+}
+
+export const CORE_OPTIONS = new InjectionToken('CoreOptions');
+
 @NgModule({
+  declarations:[
+    PageBarComponent
+  ],
   imports: [
-    CommonModule, 
-    AbpCoreModule, 
+    CommonModule,
+    AbpCoreModule,
     RouterModule,
-    
-    NgxsModule.forFeature([ PageState ])
+
+    NgxsModule.forFeature([RouterState])
+  ],
+  exports:[
+    AbpCoreModule,
+    PageBarComponent
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  static forRoot(options:CoreOptions): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        { provide: CORE_OPTIONS, useValue: options },
+        {
+          provide: 'CoreOptions',
+          useFactory: coreOptionsFactory,
+          deps: [CORE_OPTIONS],
+        },
+        { provide: APP_INITIALIZER, deps: [CoreConfigService], useFactory: noop, multi: true }
+      ],
+    };
+  }
+}
