@@ -61,7 +61,7 @@ export namespace Router {
 
     private formatParams(text: string) {
       if (!text) return '';
-      let regexp = /(?<=\:)([^(:\/\-\ )]+)/g;
+      let regexp = /(?<=\:)([^(:\/\ )]+)/g;
       let result = text;
       let match = text.match(regexp);
       if (!!match) {
